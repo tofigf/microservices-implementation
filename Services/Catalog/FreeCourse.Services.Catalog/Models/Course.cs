@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using System;
 
 namespace FreeCourse.Services.Catalog.Models
 {
@@ -12,6 +13,7 @@ namespace FreeCourse.Services.Catalog.Models
         [BsonRepresentation(BsonType.Decimal128)]
         public decimal Price { get; set; }
         [BsonRepresentation(BsonType.DateTime)]
+        public DateTime CreatedTime { get; set; }
         public string Picture { get; set; }
         public string UserId { get; set; }
 
