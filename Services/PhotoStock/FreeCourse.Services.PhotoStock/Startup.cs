@@ -31,7 +31,7 @@ namespace FreeCourse.Services.PhotoStock
             {
 
                 options.Authority = Configuration["IdentityServerUrl"];
-                options.Audience = "photo_stock_catalog";
+                options.Audience = "resource_photo_stock";
                 options.RequireHttpsMetadata = false;
 
             });

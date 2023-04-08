@@ -18,7 +18,7 @@ namespace FreeCourse.Services.Basket.Services
         {
            var status = await _redisService.GetDb().KeyDeleteAsync(userId);
 
-            return status ? Response<bool>.Success(200) : Response<bool>.Fail("Basket not found", 404);
+            return status ? Response<bool>.Success(204) : Response<bool>.Fail("Basket not found", 404);
         }
 
         public async Task<Response<BasketDto>> GetBasket(string userId)
@@ -37,7 +37,7 @@ namespace FreeCourse.Services.Basket.Services
         {
             var status = await _redisService.GetDb().StringSetAsync(basket.UserId, JsonSerializer.Serialize(basket));
 
-            return status ? Response<bool>.Success(200) : Response<bool>.Fail("Basket could not save or update", 500);
+            return status ? Response<bool>.Success(204) : Response<bool>.Fail("Basket could not save or update", 500);
         }
     }
 }
