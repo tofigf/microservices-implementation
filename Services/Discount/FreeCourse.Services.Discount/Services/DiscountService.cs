@@ -36,7 +36,7 @@ namespace FreeCourse.Services.Discount.Services
             return Response<List<Models.Discount>>.Success(discounts.ToList(), 200);
         }
 
-        public async Task<Response<Models.Discount>> GetByCodeAndUserId(int code, int userId)
+        public async Task<Response<Models.Discount>> GetByCodeAndUserId(string code, string userId)
         {
             var discounts = await _dbConnection.QueryAsync<Models.Discount>("Select * from discount where userid=@UserId and code=@Code",
                 new { UserId = userId, Code = code });
@@ -65,7 +65,7 @@ namespace FreeCourse.Services.Discount.Services
 
         public async Task<Response<NoContent>> Save(Models.Discount discount)
         {
-            var saveStatus = await _dbConnection.ExecuteAsync("Insert into discount (userid,rate,code) Values(@UserId,@Rate,@Code",
+            var saveStatus = await _dbConnection.ExecuteAsync("INSERT INTO discount (userid,rate,code) VALUES(@UserId,@Rate,@Code)",
                 discount);
 
             if(saveStatus > 0) {
