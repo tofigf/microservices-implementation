@@ -1,4 +1,5 @@
 using FreeCourse.Services.Order.Infrastructure;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -34,6 +35,10 @@ namespace FreeCourse.Services.Order.Api
                     configure.MigrationsAssembly("FreeCourse.Services.Order.Infrastructure");
                 });
             });
+            services.AddMediatR(typeof(Application.Handlers.CreateOrderCommandHandler).Assembly);
+            services.AddHttpContextAccessor();
+
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
