@@ -1,4 +1,5 @@
 using FreeCourse.Services.Order.Infrastructure;
+using FreeCourse.Shared.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -52,7 +53,7 @@ namespace FreeCourse.Services.Order.Api
             });
             services.AddMediatR(typeof(Application.Handlers.CreateOrderCommandHandler).Assembly);
             services.AddHttpContextAccessor();
-
+            services.AddScoped<IShareIdentityService, SharedIdentityService>();
 
             services.AddControllers(opt =>
             {
