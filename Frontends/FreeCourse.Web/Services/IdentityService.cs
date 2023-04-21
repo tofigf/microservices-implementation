@@ -54,8 +54,8 @@ namespace FreeCourse.Web.Services
 
             var passwordTokenRequest = new PasswordTokenRequest
             {
-                ClientId = _clientSettings.WebMvcClientForUser.ClientId,
-                ClientSecret = _clientSettings.WebMvcClientForUser.ClientSecret,
+                ClientId = _clientSettings.WebClientForUser.ClientId,
+                ClientSecret = _clientSettings.WebClientForUser.ClientSecret,
                 UserName = signinInput.Email,
                 Password = signinInput.Password,
                 Address = disco.TokenEndpoint
