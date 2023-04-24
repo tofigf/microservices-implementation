@@ -2,7 +2,7 @@
 {
     public class ClientSettings
     {
-        public Client WebMvcClient { get; set; }
+        public Client WebClient { get; set; }
         public Client WebClientForUser { get; set; }
 
     }
