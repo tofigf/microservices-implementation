@@ -29,28 +29,32 @@ namespace FreeCourse.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpContextAccessor();
-            services.AddHttpClient<IIdentityService,IdentityService>();
-            services.AddScoped<ResourceOwnerPasswordTokenHandler>();
-            services.AddScoped<ClientCredentialTokenHandler>();
-            services.AddScoped<IShareIdentityService,SharedIdentityService>();
+       
+ 
+           
             services.Configure<ClientSettings>(Configuration.GetSection("ClientSettings"));
             services.Configure<ServiceApiSettings>(Configuration.GetSection("ServiceApiSettings"));
 
             var  serviceApiSettings = Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
 
-             services.AddHttpClient<ICatalogService, CatalogService>(opt =>
+            services.AddHttpContextAccessor();
+            services.AddHttpClient<IIdentityService, IdentityService>();
+            services.AddScoped<ResourceOwnerPasswordTokenHandler>();
+            services.AddScoped<ClientCredentialTokenHandler>();
+            services.AddScoped<IShareIdentityService, SharedIdentityService>();
+            services.AddAccessTokenManagement();
+            services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTokenService>();
+            services.AddHttpClient<ICatalogService, CatalogService>(opt =>
              {
 
 
                  opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUri}/{serviceApiSettings.Catalog.Path}");
              }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
-
             services.AddHttpClient<IUserService, UserService>(opt =>
             {
                 opt.BaseAddress = new Uri(serviceApiSettings.IdentityBaseUri);
             }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
-            services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTokenService>();
+   
 
             services.AddControllersWithViews();
 
