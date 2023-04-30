@@ -31,7 +31,6 @@ namespace FreeCourse.Web.Services
             {
                 return null;
             }
-            // örnek dosya ismi= 203802340234.jpg
             var randonFilename = $"{Guid.NewGuid().ToString()}{Path.GetExtension(photo.FileName)}";
 
             using var ms = new MemoryStream();
