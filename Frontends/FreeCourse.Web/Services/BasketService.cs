@@ -11,12 +11,12 @@ namespace FreeCourse.Web.Services
     public class BasketService : IBasketService
     {
         private readonly HttpClient _httpClient;
-        //private readonly IDiscountService _discountService;
+        private readonly IDiscountService _discountService;
 
-        public BasketService(HttpClient httpClient/*, IDiscountService discountService*/)
+        public BasketService(HttpClient httpClient, IDiscountService discountService)
         {
             _httpClient = httpClient;
-            //_discountService = discountService;
+            _discountService = discountService;
         }
 
         public async Task AddBasketItem(BasketItemViewModel basketItemViewModel)
@@ -50,13 +50,13 @@ namespace FreeCourse.Web.Services
                 return false;
             }
 
-            //var hasDiscount = await _discountService.GetDiscount(discountCode);
-            //if (hasDiscount == null)
-            //{
-            //    return false;
-            //}
+            var hasDiscount = await _discountService.GetDiscount(discountCode);
+            if (hasDiscount == null)
+            {
+                return false;
+            }
 
-            //basket.ApplyDiscount(hasDiscount.Code, hasDiscount.Rate);
+            basket.ApplyDiscount(hasDiscount.Code, hasDiscount.Rate);
             await SaveOrUpdate(basket);
             return true;
         }
