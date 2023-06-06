@@ -37,6 +37,21 @@ services:
     build:
       context: .
       dockerfile: Services/Discount/FreeCourse.Services.Discount/Dockerfile
+  fakepayment.api:
+    image: fakepayment_api_image
+    build:
+      context: .
+      dockerfile: Services/FakePayment/FreeCoruse.Services.FakePayment/Dockerfile
+  order.api:
+    image: order_api_image
+    build:
+      context: .
+      dockerfile: Services/Order/FreeCourse.Services.Order.Api/Dockerfile
+  gateway.api:
+    image: gateway_api_image
+    build:
+      context: .
+      dockerfile: Gateways/FreeCoruse.Gateway/Dockerfile
 volumes:
   catalogdb_volume:
   discount_volume:
