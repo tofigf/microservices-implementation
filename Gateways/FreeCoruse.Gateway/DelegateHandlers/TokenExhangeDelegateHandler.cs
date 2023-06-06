@@ -55,7 +55,7 @@ namespace FreeCoruse.Gateway.DelegateHandlers
                 throw tokenResponse.Exception;
             }
 
-            _accessToken = tokenResponse.AccessToken;
+            _accessToken = tokenResponse.AccessToken; 
 
             return _accessToken;
         }

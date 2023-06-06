@@ -1,5 +1,6 @@
 ﻿create table Discount(
 Id serial primary key,
+UserId varchar(200) not null,
 UserId varchar(100) unique not null,
 Rate smallint not null,
 Code varchar(50) not null,
